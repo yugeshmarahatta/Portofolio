@@ -335,6 +335,7 @@
               <li>JavaScript (Node.js)</li>
               <li>Python</li>
               <li>REST API Engineering</li>
+              <li>Microservices</li>
             </ul>
           </div>
 
@@ -362,6 +363,9 @@
               <li>MySQL</li>
               <li>PostgreSQL</li>
               <li>AWS Services</li>
+              <li>Google Cloud Platform (GCP)</li>
+              <li>Firebase</li>
+              <li>Google Cloud Datastore</li>
             </ul>
           </div>
 
@@ -503,7 +507,7 @@
               <div class="timeline-company">Wolfmatrix</div>
             </div>
             <div class="timeline-content">
-              <p>Engineering robust full-stack web and mobile applications. Optimizing system performance across database schemas, API controllers, and frontend workflows. Collaborating directly with development squads to design secure client-facing features.</p>
+              <p>At Wolfmatrix, engineering full-stack web and mobile applications with PHP, Node.js, React, and React Native/Swift, backed by MySQL, PostgreSQL, and GCP/Firebase services. Building REST APIs and microservices, and collaborating with development squads to ship secure, client-facing features.</p>
             </div>
           </div>
 
@@ -515,7 +519,7 @@
               <div class="timeline-company">Wolfmatrix</div>
             </div>
             <div class="timeline-content">
-              <p>Promoted for driving core database migrations, standardizing API designs, and building modular interfaces. Supported agile teams during release cycles and bug diagnostic pipelines.</p>
+              <p>Promoted at Wolfmatrix for driving MySQL/PostgreSQL database migrations, standardizing REST API design in PHP and Node.js, and building modular React interfaces. Supported agile teams with Git-based workflows during release cycles and bug diagnostics.</p>
             </div>
           </div>
 
@@ -679,7 +683,7 @@
   <!-- Footer Section -->
   <footer>
     <div class="container footer-container">
-      <div class="footer-copy">© Yugesh Marahatta. All rights reserved.</div>
+      <div class="footer-copy">© <span id="currentYear">2026</span> Yugesh Marahatta. All rights reserved.</div>
       <a href="#home" class="back-to-top" aria-label="Back to top of page">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
       </a>
@@ -704,6 +708,16 @@
         });
       });
     }
+  </script>
+
+  <!-- Footer: keep copyright year current automatically -->
+  <script>
+    (function () {
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
   </script>
 </body>
 </html>
