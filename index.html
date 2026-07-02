@@ -28,6 +28,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- PWA / Add to Home Screen -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111111">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Yugesh Marahatta">
+  <link rel="apple-touch-icon" href="assets/img/icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/icon-192.png">
   
   <!-- Main Stylesheet -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -119,6 +129,11 @@
         margin: 0.5rem 0 2rem;
         background: linear-gradient(to right, transparent, rgba(120, 120, 140, 0.4) 12%, rgba(120, 120, 140, 0.4) 88%, transparent);
       }
+    }
+
+    .blog-card-link {
+      display: inline-block;
+      cursor: pointer;
     }
 
     /* ---- Tighter section rhythm + minimal section dividers ---- */
@@ -556,7 +571,7 @@
             <span class="blog-card-date">Aug 27, 2025</span>
             <h3 class="blog-card-title">RAG (Retrieval-Augmented Generation): How It Makes AI Smarter and More Accurate</h3>
             <p class="blog-card-desc">RAG combines retrieval from external data sources with LLM generation to produce accurate, up-to-date responses. Learn how it works and why it matters.</p>
-             <span class="blog-card-link">Read More</span>
+             <a href="blog.html" class="blog-card-link">Read More</a>
           </article>
 
           <!-- Blog 2 -->
@@ -564,7 +579,7 @@
             <span class="blog-card-date">Aug 26, 2025</span>
             <h3 class="blog-card-title">Serverless Edge Computing: Bringing Functions Closer to Your Users</h3>
             <p class="blog-card-desc">Deploy functions on edge locations worldwide for ultra-low latency. Explore Cloudflare Workers, Vercel Edge Functions and more.</p>
-             <span class="blog-card-link">Read More</span>
+             <a href="blog.html" class="blog-card-link">Read More</a>
           </article>
 
           <!-- Blog 3 -->
@@ -572,7 +587,7 @@
             <span class="blog-card-date">Aug 23, 2025</span>
             <h3 class="blog-card-title">Serverless vs Containers: Key Differences Explained</h3>
             <p class="blog-card-desc">Both aid deployment without traditional servers but address different needs. Compare lifecycles, scaling, management, and cost models.</p>
-             <span class="blog-card-link">Read More</span>
+             <a href="blog.html" class="blog-card-link">Read More</a>
           </article>
 
           <!-- Blog 4 -->
@@ -580,7 +595,7 @@
             <span class="blog-card-date">Aug 22, 2025</span>
             <h3 class="blog-card-title">How Serverless Functions Work Behind the Scenes</h3>
             <p class="blog-card-desc">Explore the magic behind serverless — event triggering, cold vs warm starts, stateless execution, and automatic scaling.</p>
-             <span class="blog-card-link">Read More</span>
+             <a href="blog.html" class="blog-card-link">Read More</a>
           </article>
 
         </div>
@@ -679,5 +694,16 @@
 
   <!-- Main JavaScript -->
   <script src="assets/js/main.js"></script>
+
+  <!-- PWA: register service worker for offline support -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch((err) => {
+          console.warn('Service worker registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
