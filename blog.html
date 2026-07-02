@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog Articles — Yugesh Marahatta</title>
+
+  <meta name="description" content="All blog articles by Yugesh Marahatta on software engineering, serverless, AI, and full-stack development." />
+  <meta name="keywords" content="Yugesh Marahatta, Software Engineer, Blog, Serverless, AI, Full Stack" />
+  <meta name="author" content="Yugesh Marahatta" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yugeshmarahatta.com.np/blog.html" />
+  <meta property="og:title" content="Blog Articles — Yugesh Marahatta" />
+  <meta property="og:description" content="All blog articles by Yugesh Marahatta on software engineering, serverless, AI, and full-stack development." />
+  <meta property="og:image" content="assets/img/yugesh_pp.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://yugeshmarahatta.com.np/blog.html" />
+  <meta property="twitter:title" content="Blog Articles — Yugesh Marahatta" />
+  <meta property="twitter:description" content="All blog articles by Yugesh Marahatta on software engineering, serverless, AI, and full-stack development." />
+  <meta property="twitter:image" content="assets/img/yugesh_pp.png" />
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function() {
+      const theme = localStorage.getItem("theme");
+      if (theme === "light") {
+        document.documentElement.classList.add("light");
+      } else if (theme === "dark") {
+        document.documentElement.classList.remove("light");
+      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        document.documentElement.classList.add("light");
+      }
+    })();
+  </script>
+
+  <style>
+    /* ---- In-page blog reader (replaces Blogspot redirect) ---- */
+    .blog-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.5rem;
+    }
+
+    .blog-card-view {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(120, 120, 140, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .blog-card-view svg {
+      width: 18px;
+      height: 18px;
+      stroke: #6366f1;
+      opacity: 0.9;
+    }
+
+    html.light .blog-card-view {
+      background: rgba(99, 102, 241, 0.10);
+    }
+
+    html.light .blog-card-view svg {
+      stroke: #4f46e5;
+    }
+
+    html:not(.light) .blog-card-view {
+      background: rgba(165, 180, 252, 0.16);
+    }
+
+    html:not(.light) .blog-card-view svg {
+      stroke: #a5b4fc;
+    }
+
+    .blog-card-view:hover {
+      background: rgba(99, 102, 241, 0.28);
+      transform: scale(1.06);
+    }
+
+    .blog-card-view:hover svg {
+      opacity: 1;
+    }
+
+    .blog-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    }
+
+    .blog-card-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: #fff;
+    }
+
+    .icon-rag        { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+    .icon-edge       { background: linear-gradient(135deg, #06b6d4, #3b82f6); }
+    .icon-containers { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+    .icon-gears      { background: linear-gradient(135deg, #10b981, #059669); }
+    .icon-compare    { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+    .icon-rocket     { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+    .icon-code       { background: linear-gradient(135deg, #4f46e5, #2563eb); }
+    .icon-mobile     { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+    .icon-target     { background: linear-gradient(135deg, #f97316, #dc2626); }
+    .icon-layers     { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+
+    .blog-card-desc {
+      margin-bottom: 0;
+    }
+
+    .blog-grid-status {
+      grid-column: 1 / -1;
+      text-align: center;
+      opacity: 0.6;
+      padding: 2rem 0;
+    }
+
+    #blogModalOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 5vh 1rem;
+    }
+
+    #blogModalOverlay.open {
+      display: flex;
+    }
+
+    .blog-modal {
+      background: var(--bg-elevated, #fff);
+      color: var(--text-primary, #111);
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+      border-radius: 14px;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      text-align: left;
+    }
+
+    html:not(.light) .blog-modal {
+      background: #16181d;
+      color: #eee;
+    }
+
+    .blog-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+    }
+
+    .blog-modal-close:hover {
+      opacity: 1;
+    }
+
+    .blog-modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    }
+
+    .blog-modal-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: #fff;
+    }
+
+    .blog-modal-date {
+      display: block;
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-modal-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0 0 1.5rem;
+      text-align: center;
+    }
+
+    .blog-modal-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .blog-modal-body h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .blog-modal-body p {
+      margin: 0 0 1rem;
+    }
+
+    .blog-modal-body ul,
+    .blog-modal-body ol {
+      margin: 0 0 1.1rem;
+      padding-left: 1.3rem;
+    }
+
+    .blog-modal-body li {
+      margin-bottom: 0.45rem;
+    }
+
+    .blog-modal-body strong {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Skip to main content</a>
+
+  <header id="siteHeader">
+    <div class="container nav-container">
+      <a class="brand" href="index.html" aria-label="Yugesh Marahatta Home">
+        YUGESH<span>MARAHATTA</span>
+      </a>
+      <nav id="mainNav" aria-label="Primary Navigation">
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#skills" class="nav-link">Skills</a>
+        <a href="index.html#projects" class="nav-link">Projects</a>
+        <a href="index.html#experience" class="nav-link">Experience</a>
+        <a href="index.html#education" class="nav-link">Education</a>
+        <a href="index.html#blog" class="nav-link">Blog</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="modeToggle" class="toggle-btn" aria-label="Toggle dark/light theme">
+          <span id="modeIcon" aria-hidden="true">☀️</span>
+          <span id="modeLabel">''</span>
+        </button>
+        <button id="hamburger" class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="content">
+
+    <section class="section">
+      <div class="container">
+
+        <div class="blog-detail-header">
+          <div class="blog-detail-support">
+            <p class="blog-support-text">If you find my articles helpful, consider supporting me!</p>
+            <a href="https://buymemomo.com/yugeshmarahatta" target="_blank" rel="noopener" class="btn btn-primary btn-buymomo">
+              <span>Buy Me Momo</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <h2 class="section-title">All Blog Articles</h2>
+
+        <!-- Cards are rendered dynamically from blogs.json — see script below -->
+        <div class="grid grid-blog" id="blogGrid">
+          <p class="blog-grid-status" id="blogGridStatus">Loading articles…</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-copy">© Yugesh Marahatta. All rights reserved.</div>
+      <a href="index.html" class="back-to-top" aria-label="Back to home page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <div class="buy-momo-fixed">
+    <a href="https://buymemomo.com/yugeshmarahatta" target="_blank" rel="noopener" class="btn btn-primary">
+      <span>Buy Me Momo</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </a>
+  </div>
+
+  <!-- In-page article modal -->
+  <div id="blogModalOverlay" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
+    <div class="blog-modal">
+      <button type="button" class="blog-modal-close" id="blogModalClose" aria-label="Close article">&times;</button>
+      <div class="blog-modal-icon" id="blogModalIcon"></div>
+      <span class="blog-modal-date" id="blogModalDate"></span>
+      <h2 class="blog-modal-title" id="blogModalTitle"></h2>
+      <div class="blog-modal-body" id="blogModalBody"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // ---- Reader logic (no Blogspot redirect) ----
+    // The "eye" glyph used on every card's view button is the only icon that
+    // isn't data-driven, since it's a UI affordance rather than post content.
+    const VIEW_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+
+    // All blog content — including each post's icon SVG markup — lives in
+    // blogs.json. Fetched once, then both the grid and the modal are built
+    // by mapping/looping over that array, rather than hardcoding per-post markup.
+    let BLOG_POSTS = [];
+
+    (function () {
+      const grid = document.getElementById("blogGrid");
+      const gridStatus = document.getElementById("blogGridStatus");
+      const overlay = document.getElementById("blogModalOverlay");
+      const closeBtn = document.getElementById("blogModalClose");
+      const modalIcon = document.getElementById("blogModalIcon");
+      const modalDate = document.getElementById("blogModalDate");
+      const modalTitle = document.getElementById("blogModalTitle");
+      const modalBody = document.getElementById("blogModalBody");
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      // Build one <article class="blog-card"> per post from the JSON data.
+      function cardTemplate(post) {
+        return (
+          '<article class="blog-card">' +
+            '<button type="button" class="blog-card-view" data-blog="' + escapeHtml(post.id) + '" aria-label="View article">' +
+              VIEW_ICON +
+            '</button>' +
+            '<div class="blog-card-icon ' + escapeHtml(post.iconClass) + '">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + post.svg + '</svg>' +
+            '</div>' +
+            '<span class="blog-card-date">' + escapeHtml(post.date) + '</span>' +
+            '<h3 class="blog-card-title">' + escapeHtml(post.title) + '</h3>' +
+            '<p class="blog-card-desc">' + escapeHtml(post.desc) + '</p>' +
+          '</article>'
+        );
+      }
+
+      function renderGrid(posts) {
+        grid.innerHTML = posts.map(cardTemplate).join("");
+        wireCardButtons();
+      }
+
+      function openBlog(id) {
+        const post = BLOG_POSTS.find(function (p) { return p.id === id; });
+        if (!post) return;
+        modalIcon.className = "blog-modal-icon " + post.iconClass;
+        modalIcon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + post.svg + '</svg>';
+        modalDate.textContent = post.date;
+        modalTitle.textContent = post.title;
+        modalBody.innerHTML = post.content;
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closeBlog() {
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function wireCardButtons() {
+        document.querySelectorAll(".blog-card-view[data-blog]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            openBlog(btn.getAttribute("data-blog"));
+          });
+        });
+      }
+
+      closeBtn.addEventListener("click", closeBlog);
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) closeBlog();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && overlay.classList.contains("open")) closeBlog();
+      });
+
+      fetch("blogs.json")
+        .then(function (res) {
+          if (!res.ok) throw new Error("Failed to load blogs.json (" + res.status + ")");
+          return res.json();
+        })
+        .then(function (posts) {
+          BLOG_POSTS = posts;
+          renderGrid(posts);
+        })
+        .catch(function (err) {
+          console.error("Could not load blog content:", err);
+          gridStatus.textContent = "Couldn't load articles right now. Please try again later.";
+        });
+    })();
+  </script>
+</body>
+</html>

@@ -3,180 +3,640 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yugesh Marahatta — Software Engineer</title>
-  <meta name="description" content="Portfolio of Yugesh Marahatta, Full‑Stack Software Engineer from Nepal. Showcasing skills, experience, projects, and achievements." />
-  <link href="assets/css/style.css" rel="stylesheet">
+  <title>Yugesh Marahatta — Full Stack Software Engineer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portfolio of Yugesh Marahatta, Full-Stack Software Engineer specializing in mobile apps, web applications, AI-powered solutions, and scalable backends." />
+  <meta name="keywords" content="Yugesh Marahatta, Software Engineer, Full Stack Developer, Wolfmatrix, PHP, React, iOS, Swift, Nepal" />
+  <meta name="author" content="Yugesh Marahatta" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yugeshmarahatta.com.np/" />
+  <meta property="og:title" content="Yugesh Marahatta — Full Stack Software Engineer" />
+  <meta property="og:description" content="Portfolio of Yugesh Marahatta. Showcasing engineering expertise in building scalable mobile, web, and AI solutions." />
+  <meta property="og:image" content="assets/img/yugesh_pp.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://yugeshmarahatta.com.np/" />
+  <meta property="twitter:title" content="Yugesh Marahatta — Full Stack Software Engineer" />
+  <meta property="twitter:description" content="Portfolio of Yugesh Marahatta. Showcasing engineering expertise in building scalable mobile, web, and AI solutions." />
+  <meta property="twitter:image" content="assets/img/yugesh_pp.png" />
+
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Project card texture patterns (replace static preview images) -->
   <style>
-    .github-icon path {
-      fill: white;
+    .project-pattern {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 12 / 7;
+      border-radius: inherit;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    body.light .github-icon path {
-      fill: #181717;
+
+    .project-pattern svg {
+      position: relative;
+      z-index: 1;
+      width: 25%;
+      height: 25%;
+      max-width: 84px;
+      max-height: 84px;
+      stroke: rgba(255, 255, 255, 0.85);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Student Management System — graph-paper grid, monochrome */
+    .pattern-grid {
+      background-color: #111111;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+      background-size: 26px 26px, 26px 26px;
+    }
+
+    /* Pharmacy Management System — cross grid, monochrome */
+    .pattern-cross {
+      background-color: #111111;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.18) 3px, transparent 3px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 3px, transparent 3px);
+      background-size: 42px 42px, 42px 42px;
+      background-position: 20px 20px, 20px 20px;
+    }
+
+    /* Vegetable Detection YOLOv5 — concentric target/scan rings, monochrome */
+    .pattern-target {
+      background-color: #111111;
+      background-image:
+        repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.22) 0px, rgba(255, 255, 255, 0.22) 2px, transparent 2px, transparent 20px);
+      background-size: 100% 100%;
+    }
+
+    /* Other Technical Projects — diagonal circuit crosshatch, monochrome */
+    .pattern-circuit {
+      background-color: #111111;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 22px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 22px);
+      background-size: 100% 100%, 100% 100%;
+    }
+
+    /* Contact section: divider between the info column and the form */
+    #contact .grid-contact {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      gap: 2.5rem;
+    }
+
+    #contact .contact-divider {
+      width: 1px;
+      align-self: stretch;
+      background: linear-gradient(to bottom, transparent, rgba(120, 120, 140, 0.4) 12%, rgba(120, 120, 140, 0.4) 88%, transparent);
+    }
+
+    @media (max-width: 860px) {
+      #contact .grid-contact {
+        grid-template-columns: 1fr;
+      }
+      #contact .contact-divider {
+        width: 100%;
+        height: 1px;
+        margin: 0.5rem 0 2rem;
+        background: linear-gradient(to right, transparent, rgba(120, 120, 140, 0.4) 12%, rgba(120, 120, 140, 0.4) 88%, transparent);
+      }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Theme Prevention Script (FOUC) -->
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function() {
+      const theme = localStorage.getItem("theme");
+      if (theme === "light") {
+        document.documentElement.classList.add("light");
+      } else if (theme === "dark") {
+        document.documentElement.classList.remove("light");
+      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        document.documentElement.classList.add("light");
+      }
+    })();
+  </script>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Yugesh Marahatta",
+      "jobTitle": "Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Wolfmatrix"
+      },
+      "url": "https://yugeshmarahatta.com.np",
+      "sameAs": [
+        "https://github.com/yugeshmarahatta",
+        "https://linkedin.com/in/yugesh-marahatta-84b427201",
+        "https://x.com/YugeshMarahatt2"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lamjung",
+        "addressCountry": "Nepal"
+      },
+      "email": "yugeshmarahatta@gmail.com"
+    }
+  </script>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home">YUGESH<span> MARAHATTA</span></a>
-      <nav id="mainNav">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+
+  <!-- Skiplink for Accessibility -->
+  <a href="#content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Section -->
+  <header id="siteHeader">
+    <div class="container nav-container">
+      <a class="brand" href="#home" aria-label="Yugesh Marahatta Home">
+        YUGESH<span>MARAHATTA</span>
+      </a>
+      <nav id="mainNav" aria-label="Primary Navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#blog" class="nav-link">Blog</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </nav>
-      <button id="modeToggle" class="toggle-btn"><span id="modeIcon">🌞</span> <span id="modeLabel">Light</span></button>
-      <button id="hamburger" class="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button id="modeToggle" class="toggle-btn" aria-label="Toggle dark/light theme">
+          <span id="modeIcon" aria-hidden="true">☀️</span>
+          <span id="modeLabel"></span>
+        </button>
+        <button id="hamburger" class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <!-- HERO -->
-  <section id="home">
-    <div class="container grid cols-2">
-      <div class="reveal">
-        <h1><span class="wave">👋</span> Hi, I'm <span style="color:var(--primary)">Yugesh Marahatta</span></h1>
-          <p class="lead">Dynamic Software Engineer at Wolfmatrix. Skilled in PHP, JavaScript, React, and REST API development. Passionate about crafting clean, scalable solutions and enhancing performance.</p>
-          <div style="margin-top:24px">
-            <a class="btn" href="#contact">🚀 Hire Me</a>
-            <a class="btn outline" href="https://github.com/yugeshmarahatta" target="_blank">GitHub ↗</a>
-            <a class="btn outline" href="https://www.linkedin.com/in/yugesh-marahatta-84b427201" target="_blank">LinkedIn ↗</a>
-              <a class="btn download-cv" href="assets/Yugesh_Marahatta_CV.pdf" target="_blank" rel="noopener noreferrer">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><path d="M12 16V4M12 16L8 12M12 16L16 12M4 20H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Download CV
+  <main id="content">
+    
+    <!-- HERO SECTION -->
+    <section id="home" class="section hero-section reveal">
+      <div class="container grid-hero">
+        <div class="hero-content">
+          <span class="hero-greeting">Hi, I'm Yugesh Marahatta.</span>
+          <h1>Full Stack Developer specializing in mobile apps, web applications, and scalable systems.</h1>
+          <p class="hero-lead">Software Engineer at Wolfmatrix crafting elegant solutions with PHP, JavaScript, Swift, and modern AI pipelines.</p>
+          
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+            <a class="btn btn-tertiary" href="assets/Yugesh_Marahatta_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Curriculum Vitae (PDF)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span>Download CV</span>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" aria-label="GitHub Profile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/yugesh-marahatta-84b427201" target="_blank" rel="noopener" aria-label="LinkedIn Profile">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://x.com/YugeshMarahatt2" target="_blank" rel="noopener" aria-label="X Profile">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 22 22"
+                fill="currentColor"
+              >
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.639 7.584H.474l8.6-9.83L0 1.153h7.594l5.243 6.932L18.901 1.153zm-1.291 19.49h2.04L6.486 3.24H4.298L17.61 20.643z"/>
+              </svg>
+            </a>
+            <a href="mailto:yugeshmarahatta@gmail.com" aria-label="Email Address">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image-container">
+            <img src="assets/img/yugesh_pp.png" alt="Yugesh Marahatta Profile" class="hero-profile-image" width="280" height="280" loading="eager" />
+        </div>
+      </div>
+    </section>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p>I am a software engineer dedicated to building scalable, high-performance applications across web and mobile ecosystems. Emphasizing clean, structured design systems and reliable code bases, I enjoy collaborating in agile settings to solve complex development problems.</p>
+          <p>With expertise spanning frontend interfaces, scalable API integrations, and robust database layers, I bridge the gap between design and functionality. Currently focusing on modern software engineering paradigms and performance optimization structures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Skills & Tech Stack</h2>
+        <div class="grid grid-skills">
+          
+          <div class="skills-card">
+            <h3>Frontend</h3>
+            <ul class="skills-list">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>HTML5 / CSS3</li>
+              <li>Responsive Web Design</li>
+            </ul>
+          </div>
+          
+          <div class="skills-card">
+            <h3>Backend</h3>
+            <ul class="skills-list">
+              <li>PHP</li>
+              <li>JavaScript (Node.js)</li>
+              <li>Python</li>
+              <li>REST API Engineering</li>
+            </ul>
+          </div>
+
+          <div class="skills-card">
+            <h3>Mobile</h3>
+            <ul class="skills-list">
+              <li>React Native</li>
+              <li>iOS (Swift)</li>
+              <li>Mobile UI Architectures</li>
+            </ul>
+          </div>
+
+          <div class="skills-card">
+            <h3>AI & Data</h3>
+            <ul class="skills-list">
+              <li>YOLOv5 Model Training</li>
+              <li>Computer Vision</li>
+              <li>Data Normalization</li>
+            </ul>
+          </div>
+
+          <div class="skills-card">
+            <h3>Cloud & Databases</h3>
+            <ul class="skills-list">
+              <li>MySQL</li>
+              <li>PostgreSQL</li>
+              <li>AWS Services</li>
+            </ul>
+          </div>
+
+          <div class="skills-card">
+            <h3>DevOps & Tools</h3>
+            <ul class="skills-list">
+              <li>Git / Version Control</li>
+              <li>Agile / Scrum Processes</li>
+              <li>Docker / Containerization</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="grid grid-projects">
+
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-image-container">
+              <div class="project-pattern pattern-grid" role="img" aria-label="Decorative graph-paper pattern representing the Student Management System">
+                <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.66 4.03 3 9 3s9-1.34 9-3v-5"/></svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-role">Lead Developer</span>
+              <h3 class="project-name">Student Management System</h3>
+              <p class="project-desc">A complete student management solution featuring student enrollment workflows, grades distribution boards, and interactive attendance trackers.</p>
+              <div class="project-tech">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>Vanilla CSS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" class="project-link-item" aria-label="GitHub Repository for Student Management System">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  <span>Repository</span>
                 </a>
-          </div>
-          <p style="margin-top:16px;opacity:.8">📍 Lamjung, Nepal | ✉️ yugeshmarahatta@gmail.com | ☎️ +977 9862382137</p>
-        </div>
-        <div class="reveal float" style="align-self:center;text-align:center">
-          <img src="assets/img/yugesh_pp.png" alt="Profile" style="border-radius:50%;max-width:260px">
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-image-container">
+              <div class="project-pattern pattern-cross" role="img" aria-label="Decorative medical cross pattern representing the Pharmacy Management System">
+                <svg viewBox="0 0 24 24"><path d="M10.5 20.5 3.5 13.5a4.95 4.95 0 1 1 7-7l1 1 1-1a4.95 4.95 0 1 1 7 7l-7 7a2 2 0 0 1-2 0z"/></svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-role">Developer</span>
+              <h3 class="project-name">Pharmacy Management System</h3>
+              <p class="project-desc">A secure desktop application designed for medical pharmacies to manage real-time drug inventories, sales logs, and customized invoicing.</p>
+              <div class="project-tech">
+                <span>Java</span>
+                <span>Swing</span>
+                <span>MySQL Database</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" class="project-link-item" aria-label="GitHub Repository for Pharmacy Management System">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  <span>Repository</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-image-container">
+              <div class="project-pattern pattern-target" role="img" aria-label="Decorative target-scan pattern representing the Vegetable Detection YOLOv5 project">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/></svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-role">AI Engineer</span>
+              <h3 class="project-name">Vegetable Detection YOLOv5</h3>
+              <p class="project-desc">A computer vision pipeline utilizing YOLOv5 algorithms to identify, draw bounding regions, and categorize agricultural produce in food sorting lines.</p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>YOLOv5</span>
+                <span>OpenCV</span>
+                <span>PyTorch</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" class="project-link-item" aria-label="GitHub Repository for Vegetable Detection YOLOv5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  <span>Repository</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <div class="project-image-container">
+              <div class="project-pattern pattern-circuit" role="img" aria-label="Decorative circuit crosshatch pattern representing other technical projects">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="6" height="6"/><path d="M9 3v6M15 3v6M9 15v6M15 15v6M3 9h6M15 9h6M3 15h6M15 15h6"/></svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-role">Full Stack Engineer</span>
+              <h3 class="project-name">Other Technical Projects</h3>
+              <p class="project-desc">A compilation of proof-of-concepts exploring REST microservices, native mobile architectures, and automated testing integrations.</p>
+              <div class="project-tech">
+                <span>AI API</span>
+                <span>React Native</span>
+                <span>WebSockets</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" class="project-link-item" aria-label="GitHub Profile featuring more projects">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  <span>All Repositories</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
-    <!-- ABOUT -->
-    <section id="about" class="alt reveal">
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section reveal">
       <div class="container">
-        <h2>About Me</h2>
-        <p>I am a software engineer with experience in building scalable applications across web and mobile platforms. Adept at collaborating in Agile teams and continuously learning modern technologies. Recognized for delivering solutions that improve user experiences and optimize system performance.</p>
-      </div>
-    </section>
-    <!-- SKILLS -->
-    <section id="skills" class="reveal">
-      <div class="container grid cols-3">
-        <div class="card pad">
-          <h3>Core Skills</h3>
-          <p><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">Swift</span><span class="chip">Python</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">REST API</span></p>
-        </div>
-        <div class="card pad">
-          <h3>Methodologies</h3>
-          <p><span class="chip">Agile</span><span class="chip">Scrum</span><span class="chip">Team Collaboration</span></p>
-        </div>
-        <div class="card pad">
-          <h3>Languages</h3>
-          <p><span class="chip">Nepali</span><span class="chip">English</span></p>
-        </div>
-      </div>
-    </section>
-    <!-- EXPERIENCE -->
-    <section id="experience" class="reveal">
-      <div class="container">
-        <h2>Experience</h2>
+        <h2 class="section-title">Work Experience</h2>
         <div class="timeline">
-          <div class="titem card pad">
-            <h3>Software Engineer @ Wolfmatrix <span style="opacity:.7">(Nov 2024 – Present)</span></h3>
-            <p>Currently serving as a Software Engineer, contributing to full‑stack solutions and mobile app development.</p>
+          
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-date">Nov 2024 – Present</span>
+              <h3>Software Engineer</h3>
+              <div class="timeline-company">Wolfmatrix</div>
+            </div>
+            <div class="timeline-content">
+              <p>Engineering robust full-stack web and mobile applications. Optimizing system performance across database schemas, API controllers, and frontend workflows. Collaborating directly with development squads to design secure client-facing features.</p>
+            </div>
           </div>
-          <div class="titem card pad">
-            <h3>Associate Software Engineer @ Wolfmatrix <span style="opacity:.7">(Oct 2023 – Oct 2024)</span></h3>
-            <p>Promoted for contributions to scalable backend systems and front‑end integration.</p>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-date">Oct 2023 – Oct 2024</span>
+              <h3>Associate Software Engineer</h3>
+              <div class="timeline-company">Wolfmatrix</div>
+            </div>
+            <div class="timeline-content">
+              <p>Promoted for driving core database migrations, standardizing API designs, and building modular interfaces. Supported agile teams during release cycles and bug diagnostic pipelines.</p>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
-    <!-- EDUCATION -->
-    <section id="education" class="alt reveal">
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="section reveal">
       <div class="container">
-        <h2>Education</h2>
+        <h2 class="section-title">Education</h2>
         <div class="timeline">
-          <div class="titem card pad">
-            <h3>Bachelor of Computer Application <span style="opacity:.7">(2023)</span></h3>
-            <p>Tribhuvan University — National College, Kathmandu</p>
+          
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-date">2023</span>
+              <h3>Bachelor of Computer Application (BCA)</h3>
+              <div class="timeline-company">Tribhuvan University — National College, Kathmandu</div>
+            </div>
           </div>
-          <div class="titem card pad">
-            <h3>High School Diploma <span style="opacity:.7">(2018)</span></h3>
-            <p>National School of Sciences, Kathmandu</p>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-date">2018</span>
+              <h3>High School Diploma</h3>
+              <div class="timeline-company">National School of Sciences, Kathmandu</div>
+            </div>
           </div>
-          <div class="titem card pad">
-            <h3>School Leaving Certificate <span style="opacity:.7">(2016)</span></h3>
-            <p>Laxmi Narayan Secondary School, Lamjung</p>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-header">
+              <span class="timeline-date">2016</span>
+              <h3>School Leaving Certificate (SLC)</h3>
+              <div class="timeline-company">Laxmi Narayan Secondary School, Lamjung</div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
-    <!-- PROJECTS -->
-    <section id="projects" class="alt reveal">
+
+    <!-- BLOG SECTION -->
+    <section id="blog" class="section reveal">
       <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="grid cols-2">
-          <div class="card pad">
-            <h3>🎓 Student Management System (PHP)</h3>
-            <p>A complete student management solution with features like enrollment, grading, and attendance tracking, developed using PHP and MySQL.</p>
-          </div>
-          <div class="card pad">
-            <h3>💊 Pharmacy Management System (Java)</h3>
-            <p>A desktop application designed for pharmacies to manage medicine inventory, sales, and billing, built with Java and Swing.</p>
-          </div>
-          <div class="card pad">
-            <h3>🥦 Vegetable Detection (YOLOv5)</h3>
-            <p>A computer vision project using YOLOv5 to detect and classify different vegetables, enhancing automation in food industry applications.</p>
-          </div>
-          <div class="card pad">
-            <h3>⚙️ Other Projects</h3>
-            <p>Includes experiments with AI, mobile apps, and backend systems that explore new technologies and improve workflows.</p>
-          </div>
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="grid grid-blog">
+
+          <!-- Blog 1 -->
+          <article class="blog-card">
+            <span class="blog-card-date">Aug 27, 2025</span>
+            <h3 class="blog-card-title">RAG (Retrieval-Augmented Generation): How It Makes AI Smarter and More Accurate</h3>
+            <p class="blog-card-desc">RAG combines retrieval from external data sources with LLM generation to produce accurate, up-to-date responses. Learn how it works and why it matters.</p>
+             <span class="blog-card-link">Read More</span>
+          </article>
+
+          <!-- Blog 2 -->
+          <article class="blog-card">
+            <span class="blog-card-date">Aug 26, 2025</span>
+            <h3 class="blog-card-title">Serverless Edge Computing: Bringing Functions Closer to Your Users</h3>
+            <p class="blog-card-desc">Deploy functions on edge locations worldwide for ultra-low latency. Explore Cloudflare Workers, Vercel Edge Functions and more.</p>
+             <span class="blog-card-link">Read More</span>
+          </article>
+
+          <!-- Blog 3 -->
+          <article class="blog-card">
+            <span class="blog-card-date">Aug 23, 2025</span>
+            <h3 class="blog-card-title">Serverless vs Containers: Key Differences Explained</h3>
+            <p class="blog-card-desc">Both aid deployment without traditional servers but address different needs. Compare lifecycles, scaling, management, and cost models.</p>
+             <span class="blog-card-link">Read More</span>
+          </article>
+
+          <!-- Blog 4 -->
+          <article class="blog-card">
+            <span class="blog-card-date">Aug 22, 2025</span>
+            <h3 class="blog-card-title">How Serverless Functions Work Behind the Scenes</h3>
+            <p class="blog-card-desc">Explore the magic behind serverless — event triggering, cold vs warm starts, stateless execution, and automatic scaling.</p>
+             <span class="blog-card-link">Read More</span>
+          </article>
+
+        </div>
+
+        <div style="text-align:center;margin-top:2rem;">
+          <a href="blog.html" class="btn btn-secondary">
+            <span>See All Articles</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
         </div>
       </div>
     </section>
-    <!-- CONTACT -->
-    <section id="contact" class="reveal">
-      <div class="container grid cols-2">
-        <div class="card pad">
-          <h3>Get in Touch</h3>
-          <p>Email: yugeshmarahatta@gmail.com<br/>Phone: +977 9862382137</p>
-          <p style="margin:18px 0;display:flex;flex-wrap:wrap;gap:18px 18px;justify-content:flex-start;">
-            <a class="btn outline" href="https://github.com/yugeshmarahatta" target="_blank" style="display:inline-flex;align-items:center;"><svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.484 2 12.012c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.274.098-2.656 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.546 1.382.202 2.402.1 2.656.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.92.678 1.855 0 1.339-.012 2.421-.012 2.751 0 .268.18.579.688.481C19.138 20.188 22 16.437 22 12.012 22 6.484 17.523 2 12 2z"/></svg>GitHub</a>
-            <a class="btn outline" href="https://linkedin.com/in/yugesh-marahatta-84b427201" target="_blank" style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z" fill="#0077B5"/></svg>LinkedIn</a>
-            <a class="btn outline" href="https://yugeshmarahatta.blogspot.com" target="_blank" style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><path d="M19.5 2h-15A2.5 2.5 0 0 0 2 4.5v15A2.5 2.5 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 19.5 2zm-7.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5-6.5h-7a1 1 0 0 1 0-2h7a1 1 0 0 1 0 2zm0-4h-7a1 1 0 0 1 0-2h7a1 1 0 0 1 0 2z" fill="#F57C00"/></svg>Blog</a>
-            <a class="btn outline" href="https://x.com/YugeshMarahatt2" target="_blank" style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><path d="M17.53 2H21.5L14.36 10.29L22.75 21.5H16.18L10.98 14.47L4.97 21.5H1L8.57 12.67L0.5 2H7.18L12.01 8.47L17.53 2ZM16.36 19.57H18.18L6.5 4.43H4.57L16.36 19.57Z" fill="#000"/></svg>X</a>
-            <a class="btn outline" href="https://www.facebook.com/yougesh.marahatta.1/" target="_blank" style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.405 24 24 23.408 24 22.674V1.326C24 .592 23.405 0 22.675 0z" fill="#1877F3"/></svg>Facebook</a>
-            <a class="btn outline" href="https://www.instagram.com/yugesh.marahatta/" target="_blank" style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="margin-right:8px;" xmlns="http://www.w3.org/2000/svg"><radialGradient id="insta-gradient" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5"><stop offset="0%" stop-color="#f9ce34"/><stop offset="50%" stop-color="#ee2a7b"/><stop offset="100%" stop-color="#6228d7"/></radialGradient><rect width="24" height="24" rx="5" fill="url(#insta-gradient)"/><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8A4.8 4.8 0 1 0 12 7.2ZM19.2 6.6A1.2 1.2 0 1 0 19.2 9A1.2 1.2 0 1 0 19.2 6.6Z" fill="#fff"/></svg>Instagram</a>
-          </p>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section reveal">
+      <div class="container grid grid-contact">
+        <div class="contact-info">
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="contact-lead">Have a project, a question, or just want to chat? Send a message and let's build something premium together.</p>
+          
+          <div class="contact-methods">
+            <div class="method-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>yugeshmarahatta@gmail.com</span>
+            </div>
+            <div class="method-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+977 9862382137</span>
+            </div>
+            <div class="method-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Lamjung, Nepal</span>
+            </div>
+          </div>
+
+          <div class="contact-socials-wrapper">
+            <span class="social-label">Follow Me</span>
+            <div class="contact-socials">
+              <a href="https://github.com/yugeshmarahatta" target="_blank" rel="noopener" aria-label="GitHub Profile">GitHub</a>
+              <a href="https://linkedin.com/in/yugesh-marahatta-84b427201" target="_blank" rel="noopener" aria-label="LinkedIn Profile">LinkedIn</a>
+              <a href="https://x.com/YugeshMarahatt2" target="_blank" rel="noopener" aria-label="X Profile">X</a>
+              <a href="https://www.facebook.com/yougesh.marahatta.1/" target="_blank" rel="noopener" aria-label="Facebook Profile">Facebook</a>
+              <a href="https://www.instagram.com/yugesh.marahatta/" target="_blank" rel="noopener" aria-label="Instagram Profile">Instagram</a>
+            </div>
+          </div>
         </div>
-        <div class="card pad">
-          <h3>Send a Message</h3>
-          <form id="contactForm">
-            <input id="name" placeholder="Your name" required style="margin-bottom:12px;width:100%;padding:12px;border-radius:10px;border:none" />
-            <input id="email" type="email" placeholder="Your email" required style="margin-bottom:12px;width:100%;padding:12px;border-radius:10px;border:none" />
-            <textarea id="message" placeholder="Message" required style="width:100%;min-height:120px;padding:12px;border-radius:10px;border:none"></textarea>
-            <button class="btn" type="submit" style="margin-top:12px">✉️ Send</button>
+
+        <div class="contact-divider" aria-hidden="true"></div>
+
+        <div class="contact-form-wrapper">
+          <form id="contactForm" autocomplete="on">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" name="name" placeholder="Alex Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" name="email" placeholder="alex@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Hi Yugesh, let's collaborate on..." required></textarea>
+            </div>
+            <button class="btn btn-primary btn-submit" type="submit">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-send"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <noscript>
+              <p style="margin-top: 0.75rem; font-size: 0.85rem; opacity: 0.75;">
+                JavaScript is required to send this form. You can also email me directly at
+                <a href="mailto:yugeshmarahatta@gmail.com">yugeshmarahatta@gmail.com</a>.
+              </p>
+            </noscript>
           </form>
         </div>
       </div>
     </section>
-        </form>
-      </div>
-    </div>
-  </section>
 
+  </main>
+
+  <!-- Footer Section -->
   <footer>
-    <div>© Yugesh Marahatta. All rights reserved.</div>
+    <div class="container footer-container">
+      <div class="footer-copy">© Yugesh Marahatta. All rights reserved.</div>
+      <a href="#home" class="back-to-top" aria-label="Back to top of page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </a>
+    </div>
   </footer>
 
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- EmailJS SDK — authenticates with a public key (safe to expose client-side) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Main JavaScript -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>
